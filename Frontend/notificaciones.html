@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Chambapp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f0f0;
+        }
+        .notifications-container {
+            padding: 0.5rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .notifications-header {
+            color: #0000FF;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .notification-card {
+            background-color: #FFD700;
+            border-radius: 4px;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .notification-card:hover {
+            transform: translateY(-2px);
+        }
+        .notification-title {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+            color: #000;
+            font-size: 0.9rem;
+        }
+        .notification-details {
+            font-size: 0.8rem;
+            color: #333;
+        }
+        .notification-details p {
+            margin: 0.1rem 0;
+        }
+        .notification-details span {
+            color: #0000FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="notifications-container">
+        <div class="notifications-header">NOTIFICACIONES</div>
+        <div class="notification-card">
+            <div class="notification-title">PROPUESTA DE FECHA</div>
+            <div class="notification-details">
+                <p>Cliente: <span>Nicho López</span></p>
+                <p>Servicio: <span>Reparación de fugas de agua</span></p>
+            </div>
+        </div>
+        <div class="notification-card">
+            <div class="notification-title">NEGOCIACIÓN DE TARIFA</div>
+            <div class="notification-details">
+                <p>Cliente: <span>Nicho López</span></p>
+                <p>Servicio: <span>Reparación de fugas de agua</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

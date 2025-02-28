@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Chambapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Banner superior */
+        .top-banner {
+            background-color: #FFD700;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: white;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #0000FF;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-icons button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #0000FF;
+        }
+
+        /* Contenido del perfil */
+        .profile-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .profile-photo-section {
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .change-photo-btn {
+            background-color: #FFD700;
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            color: #0000FF;
+            font-weight: bold;
+            min-width: 150px;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Historial de pedidos */
+        .order-history {
+            margin-top: 3rem;
+        }
+
+        .order-history h2 {
+            color: #0000FF;
+            margin-bottom: 1rem;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            border: 1px solid #FFD700;
+        }
+
+        .order-table th,
+        .order-table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #FFD700;
+        }
+
+        .order-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .rating {
+            color: #FFD700;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #FFD700;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos para "Contáctanos" */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons .icon {
+            color: #0033FF;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Línea divisoria */
+        hr {
+            height: 1px;
+            background-color: black; 
+            border: none;
+            margin-top: 0;  
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        15% DESCUENTO PARA NUEVOS USUARIOS
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">CHAMBAPP</a>
+            <div class="search-bar">
+                <input type="search" placeholder="Buscar...">
+            </div>
+            <div class="nav-icons">
+                <button><i class="fa-solid fa-bars"></i></button>
+                <button><i class="fa-solid fa-cart-shopping"></i></button>
+                <button id="userButton"><i class="fa-solid fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>PERFIL</h1>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-photo-section">
+                <h3>FOTO DE PERFIL</h3>
+                <div class="profile-photo">
+                    <img src="images/perfil.jpg" alt="Foto de perfil">
+                </div>
+                <button class="change-photo-btn">Cambiar</button>
+            </div>
+
+            <div class="profile-info">
+                <div class="form-group">
+                    <label for="nombre">NOMBRE</label>
+                    <input type="text" id="nombre" value="Pedro López">
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">CORREO</label>
+                    <input type="email" id="correo" value="pedrolopez@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">DIRECCIÓN</label>
+                    <input type="text" id="direccion" value="Periférico 2589 Int 14 Colonia Flores">
+                </div>
+
+                <div class="form-group">
+                    <label for="metodo-pago">MÉTODO DE PAGO</label>
+                    <input type="text" id="metodo-pago" value="Efectivo">
+                </div>
+            </div>
+        </div>
+
+        <div class="order-history">
+            <h2>HISTORIAL DE PEDIDOS</h2>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>SERVICIO</th>
+                        <th>PROVEEDOR</th>
+                        <th>COSTO</th>
+                        <th>CALIFICACIÓN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>05 ene 25</td>
+                        <td>Reparación de fugas de agua y gas</td>
+                        <td>Juan Pérez</td>
+                        <td>$ 2,250.00</td>
+                        <td class="rating">4.8/5</td>
+                    </tr>
+                    <tr>
+                        <td>25 ene 25</td>
+                        <td>Reparación eléctrica</td>
+                        <td>María Vega</td>
+                        <td>$ 850.00</td>
+                        <td class="rating">4.6/5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h2 class="logo">CHAMBAPP</h2>
+                <div class="contact-section">
+                    <span>Contáctanos</span>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-regular fa-envelope"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Chamapp. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Back to top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Agregar funcionalidad al botón de cambiar foto
+        document.querySelector('.change-photo-btn').addEventListener('click', function() {
+            // Aquí iría la lógica para cambiar la foto
+            alert('Funcionalidad de cambio de foto pendiente de implementar');
+        });
+
+        // Hacer que los campos sean editables
+        const inputs = document.querySelectorAll('.profile-info input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.select();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen del Servicio - Chambapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+
+        /* Banner superior */
+        .top-banner {
+            background-color: #FFD700;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            padding: 1rem;
+            border-bottom: 2px solid #0000FF;
+            background-color: white;
+        }
+
+        .header-content {
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #0000FF;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 2rem 4rem;
+            background: white;
+            flex-grow: 1;
+        }
+
+        .summary-container {
+            border: 2px solid #0000FF;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .summary-header h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .summary-details {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-details dt {
+            font-weight: bold;
+            color: #666;
+        }
+
+        .summary-details dd {
+            color: #0000FF;
+        }
+
+        .summary-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: black;
+        }
+
+        /* Pie de página */
+       footer {
+            background-color: #FFD700;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos para "Contáctanos" */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons .icon {
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Línea divisoria */
+        hr {
+            height: 1px;
+            background-color: black; 
+            border: none;
+            margin-top: 0;  
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .category-items {
+                overflow-x: auto;
+                padding: 1rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content,
+            .main-content,
+            .footer-content {
+                padding: 1rem;
+            }
+
+            .summary-details {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .summary-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        15% DESCUENTO PARA NUEVOS USUARIOS
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CHAMBAPP</a>
+            <div class="search-bar">
+                <input type="search" placeholder="Buscar...">
+            </div>
+            <div class="nav-icons">
+                <button><i class="fa-solid fa-bars"></i></button>
+                <button><i class="fa-solid fa-cart-shopping"></i></button>
+                <button id="userButton"><i class="fa-solid fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="summary-container">
+            <div class="summary-header">
+                <h1>RESUMEN DEL SERVICIO</h1>
+            </div>
+
+            <dl class="summary-details">
+                <dt>PROVEEDOR</dt>
+                <dd>Juan Pérez</dd>
+
+                <dt>CLIENTE</dt>
+                <dd>Nicho López</dd>
+
+                <dt>SERVICIO</dt>
+                <dd>Reparación de fugas de agua y gas</dd>
+
+                <dt>DESCRIPCIÓN</dt>
+                <dd>una fuga en baño en planta baja</dd>
+
+                <dt>OFERTA</dt>
+                <dd>$$$</dd>
+
+                <dt>FECHA</dt>
+                <dd>05 - abril 1:30pm</dd>
+            </dl>
+
+            <div class="summary-actions">
+                <button class="btn btn-primary">Cancelar servicio</button>
+                <button class="btn btn-primary">Realizar pago</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h2 class="logo">CHAMBAPP</h2>
+                <div class="contact-section">
+                    <span>Contáctanos</span>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-regular fa-envelope"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Chamapp. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Back to top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("userButton").addEventListener("click", function() {
+          window.location.href = "perfil.html";
+        });
+    </script>
+</body>
+</html>

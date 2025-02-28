@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Chambapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Banner superior */
+        .top-banner {
+            background-color: #FFD700;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: white;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #0000FF;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-icons button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Contenido del perfil */
+        .profile-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .profile-title {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .edit-button {
+            padding: 0.5rem 1rem;
+            background: #FFD700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: #0000FF;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .profile-photo {
+            text-align: center;
+        }
+
+        .photo-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #0000FF;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .add-certificates {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: white;
+            border: 2px solid #0000FF;
+            color: #0000FF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+
+        .add-certificates i {
+            font-size: 1.2rem;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #FFD700;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos para "Contáctanos" */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons .icon {
+            color: #0033FF;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Línea divisoria */
+        hr {
+            height: 1px;
+            background-color: black; 
+            border: none;
+            margin-top: 0;  
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .category-items {
+                overflow-x: auto;
+                padding: 1rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .photo-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        15% DESCUENTO PARA NUEVOS USUARIOS
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CHAMBAPP</a>
+            <div class="search-bar">
+                <input type="search" placeholder="Buscar...">
+            </div>
+            <div class="nav-icons">
+                <button><i class="fa-solid fa-bars"></i></button>
+                <button><i class="fa-solid fa-cart-shopping"></i></button>
+                <button id="userButton"><i class="fa-solid fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1 class="profile-title">PERFIL</h1>
+            <button class="edit-button">Editar perfil</button>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-form">
+                <div class="form-group">
+                    <label for="nombre">NOMBRE</label>
+                    <input type="text" id="nombre" value="Juan Pérez" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="perfil">PERFIL</label>
+                    <input type="text" id="perfil" value="Servicio de Plomería - Reparación de fugas y tuberías" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">CORREO</label>
+                    <input type="email" id="correo" value="juanperez@gmail.com" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="presentacion">PRESENTACIÓN</label>
+                    <textarea id="presentacion" readonly>Soy plomero con más de 20 años de experiencia en instalación y reparación de tuberías, drenajes y tuberías de agua, mantenimiento de sistemas hidráulicos y sanitarios. Trabajo con tecnologías de calidad y garantizo un servicio rápido y profesional.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="servicios">SERVICIOS OFRECIDOS</label>
+                    <textarea id="servicios" readonly>Reparación de fugas de agua y gas
+                    Instalación de tuberías, llaves y sanitarios
+                    Destapado de cañerías
+                    Cambio de conexiones y tuberías
+                    Diagnóstico y mantenimiento preventivo</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="no-incluye">NO INCLUYE</label>
+                    <textarea id="no-incluye" readonly>Materiales (pueden cotizarse aparte)
+                    Trabajos estructurales del albañilería</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="disponibilidad">DISPONIBILIDAD</label>
+                    <textarea id="disponibilidad" readonly>Días disponibles: Lunes a sábado
+                    Horario: 8:00 a 20:30 hrs
+                    Servicio de emergencia 24/7 disponible</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="precios">SERVICIOS OFRECIDOS</label>
+                    <textarea id="precios" readonly>Visita y diagnóstico: $250 MXN (se descuenta si contrata el servicio)
+                    Reparación de fugas sencillas: Desde $350 MXN
+                    Inspección de tuberías y otros: Desde $500 MXN
+                    Cambio de tuberías: Precio a cotizar según el trabajo
+                    Servicio de emergencia: +50% sobre el precio base
+                    Segundo diagnóstico – Revisión gratuita en caso y sólo si no se resolvió con el presupuesto</textarea>
+                </div>
+            </div>
+
+            <div class="profile-photo">
+                <h3>FOTO DE PERFIL</h3>
+                <div class="photo-container">
+                    <img src="images/perfil.jpg" alt="Foto de perfil">
+                </div>
+            </div>
+        </div>
+
+        <button class="add-certificates">
+            <i class="fa-solid fa-plus"></i>
+            AGREGAR CERTIFICADOS
+        </button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h2 class="logo">CHAMBAPP</h2>
+                <div class="contact-section">
+                    <span>Contáctanos</span>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-regular fa-envelope"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Chamapp. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Back to top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('userButton').addEventListener('click', function() {
+            window.location.href = 'perfil.html'; // Aquí pon la URL de la página de perfil
+        });
+        document.querySelector('.edit-button').addEventListener('click', function() {
+            window.location.href = 'editarperfil.html';
+        });
+    </script>
+</body>
+</html>

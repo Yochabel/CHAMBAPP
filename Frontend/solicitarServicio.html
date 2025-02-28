@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Servicio - Chambapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+
+        /* Banner superior */
+        .top-banner {
+            background-color: #FFD700;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            padding: 1rem;
+            border-bottom: 2px solid  #eee;
+            background-color: white;
+        }
+
+        .header-content {
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #0000FF;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 5rem 4rem;
+            background: white;
+            flex-grow: 1;
+        }
+
+        .service-form {
+            border: 2px solid #0000FF;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #666;
+        }
+
+        .form-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .service-selection h2 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .not-included {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .not-included h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .not-included ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .description-section {
+            margin-top: 2rem;
+        }
+
+        .description-section h2 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .description-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .offer-section {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .offer-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .negotiate-button {
+            background: #FFD700;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #FFD700;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos para "Contáctanos" */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons .icon {
+            color: #0033FF;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Línea divisoria */
+        hr {
+            height: 1px;
+            background-color: black; 
+            border: none;
+            margin-top: 0;  
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .category-items {
+                overflow-x: auto;
+                padding: 1rem;
+            }
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content,
+            .main-content,
+            .footer-content {
+                padding: 1rem;
+            }
+
+            .form-content {
+                grid-template-columns: 1fr;
+            }
+
+            .offer-section {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        15% DESCUENTO PARA NUEVOS USUARIOS
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CHAMBAPP</a>
+            <div class="search-bar">
+                <input type="search" placeholder="Buscar...">
+            </div>
+            <div class="nav-icons">
+                <button><i class="fa-solid fa-bars"></i></button>
+                <button><i class="fa-solid fa-cart-shopping"></i></button>
+                <button id="userButton"><i class="fa-solid fa-user"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <form class="service-form">
+            <div class="form-header">
+                <h1>Juan Pérez - Técnico certificado</h1>
+                <p>Servicio de Plomería - Reparación de fugas y tuberías</p>
+            </div>
+
+            <div class="form-content">
+                <div class="service-selection">
+                    <h2>SELECCIONA EL SERVICIO</h2>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="service" value="fugas">
+                            REPARACIÓN DE FUGAS DE AGUA Y GAS
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="service" value="tuberias">
+                            INSTALACIÓN DE TUBERÍAS, LLAVES Y SANITARIOS
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="service" value="destapado">
+                            DESTAPADO DE CAÑERÍAS
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="service" value="calentadores">
+                            CAMBIO DE CALENTADORES Y TINACOS
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="service" value="mantenimiento">
+                            DIAGNÓSTICO Y MANTENIMIENTO PREVENTIVO
+                        </label>
+                    </div>
+                </div>
+
+                <div class="not-included">
+                    <h3>NO INCLUYE</h3>
+                    <ul>
+                        <li>MATERIALES (PUEDEN COTIZARSE APARTE)</li>
+                        <li>TRABAJOS ESTRUCTURALES DE ALBAÑILERÍA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h2>DESCRIPCIÓN:</h2>
+                <textarea class="description-input" placeholder="Una fuga en baño en planta baja"></textarea>
+            </div>
+
+            <div class="offer-section">
+                <input type="text" class="offer-input" placeholder="$$$">
+                <button type="submit" class="negotiate-button">NEGOCIAR</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h2 class="logo">CHAMBAPP</h2>
+                <div class="contact-section">
+                    <span>Contáctanos</span>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-regular fa-envelope"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Chamapp. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Back to top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("userButton").addEventListener("click", function() {
+          window.location.href = "perfil.html";
+        });
+      </script>
+</body>
+</html>
