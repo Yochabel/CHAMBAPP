@@ -14,6 +14,7 @@ app.use('/api/chambeadores', require('./routes/chambeadoresRoutes'));
 app.use('/api/clients', require('./routes/clientsRoutes'));
 app.use('/api/chamba', require('./routes/chambaRoutes'));
 app.use('/api/users', require('./routes/usersRoutes'));
+app.use('/api/sessions', require('./routes/sessionsRoutes')); 
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);

@@ -22,11 +22,13 @@ const createUser = async (data) => {
     const hashedPassword = await bcrypt.hash(Password, salt);
 
     const result = await pool.query(
-        'INSERT INTO Users (Username, PasswordHash, Role) VALUES ($1, $2, $3) RETURNING ID, Username, Role',
+        `INSERT INTO Users (Username, PasswordHash, Role, DateCreated) 
+        VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING ID, Username, Role`,
         [Username, hashedPassword, Role]
     );
     return result.rows[0];
 };
+
 
 const updateUser = async (id, data) => {
     const { Username, Role } = data;

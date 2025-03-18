@@ -13,11 +13,14 @@ const getChambaById = async (id) => {
 const createChamba = async (data) => {
     const { Client_ID, Chambeador_ID, Servicio, Descripcion, CostAgreed } = data;
     const result = await pool.query(
-        'INSERT INTO Chamba (Client_ID, Chambeador_ID, Servicio, Descripcion, CostAgreed) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        `INSERT INTO Chamba 
+        (Client_ID, Chambeador_ID, Servicio, Descripcion, CostAgreed, DateCreated) 
+        VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP) RETURNING *`,
         [Client_ID, Chambeador_ID, Servicio, Descripcion, CostAgreed]
     );
     return result.rows[0];
 };
+
 
 const updateChamba = async (id, data) => {
     const { StepStatus } = data;
