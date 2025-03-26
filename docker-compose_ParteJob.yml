@@ -1,0 +1,8 @@
+follow-through-a-job:
+  build: ./follow-through-a-job
+  ports:
+    - "3002:3002"
+  environment:
+    - DATABASE_URL=postgresql://usuario:password@rds:5432/chambappdb
+  depends_on:
+    - rds
