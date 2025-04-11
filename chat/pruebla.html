@@ -1,0 +1,44 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat CHAMBAPP</title>
+</head>
+
+<body>
+    <h1>Chat en Tiempo Real</h1>
+    <div id="chat-box"></div>
+    <input id="msgInput" placeholder="Escribe un mensaje..." />
+    <button onclick="sendMsg()">Enviar</button>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        const socket = io('http://localhost:4000');
+        const roomId = 'chamba123'; // ID de la chamba
+        const senderId = 'user-abc'; // ID del cliente o chambeador
+
+        socket.emit('joinRoom', roomId);
+
+        socket.on('chatMessage', (data) => {
+            const box = document.getElementById('chat-box');
+            const msg = document.createElement('p');
+            msg.textContent = `[${data.sender_id}]: ${data.message}`;
+            box.appendChild(msg);
+        });
+
+        function sendMsg() {
+            const input = document.getElementById('msgInput');
+            const message = input.value;
+            socket.emit('chatMessage', {
+                roomId: roomId,
+                sender_id: senderId,
+                receiver_id: null,
+                message: message
+            });
+            input.value = '';
+        }
+    </script>
+</body>
+
+</html>

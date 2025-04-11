@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "TuNombre",
+  "author": "BenjaminLZS",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.7",

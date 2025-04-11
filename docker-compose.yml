@@ -1,0 +1,176 @@
+version: '3.8'
+
+  # Auth service
+services:
+  auth:
+    build:
+      context: ./auth
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+      - JWT_SECRET=secretoUltraSeguro123
+      - JWT_EXPIRES_IN=1d
+    depends_on:
+      - db
+      - redis
+
+  # Chamba-creator service
+  chamba-creator:
+    build:
+      context: ./chamba-creator
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+    depends_on:
+      - db
+      - redis
+
+  # Chat service 
+  chat:
+    build:
+      context: ./chat
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+    depends_on:
+      - db
+      - redis
+    networks:
+      - chambapp-network
+
+  # Follow-through-a-job service
+  follow-through-a-job:
+    build:
+      context: ./follow-through-a-job
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - chambapp-network
+
+  # Grading service
+  grading:
+    build:
+      context: ./grading
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+    depends_on:
+      - db
+    networks:
+      - chambapp-network
+
+  # Notifications service
+  notifications:
+    build:
+      context: ./notifications
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+    depends_on:
+      - db
+    networks:
+      - chambapp-network
+
+  # PostgreSQL service (DB)
+  db:
+    image: postgres:13
+    container_name: chambapp_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: chambapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - chambapp_db_data:/var/lib/postgresql/data
+    networks:
+      - chambapp-network
+
+  # Redis service
+  redis:
+    image: redis:7
+    container_name: chambapp_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - chambapp-network
+
+  # Backend
+  backend:
+    build:
+      context: ./Backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - PORT=8000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=example
+      - DB_NAME=chambapp
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - chambapp-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./Frontend
+    ports:
+      - "8080:8080"
+    networks:
+      - chambapp-network
+
+volumes:
+  chambapp_db_data:
+    driver: local
+
+networks:
+  chambapp-network:
+    driver: bridge

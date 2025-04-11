@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat de la Chamba</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+        }
+
+        #chatContainer {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            padding: 20px;
+        }
+
+        #messages {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fafafa;
+        }
+
+        .msg {
+            margin: 5px 0;
+        }
+
+        .yo {
+            text-align: right;
+            color: blue;
+        }
+
+        .otro {
+            text-align: left;
+            color: green;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chatContainer">
+        <h2>Chat con tu Chambeador/Cliente</h2>
+        <div id="messages"></div>
+        <input type="text" id="msgInput" placeholder="Escribe un mensaje..." />
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../js/chat.js"></script>
+</body>
+
+</html>

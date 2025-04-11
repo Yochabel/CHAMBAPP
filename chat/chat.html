@@ -1,0 +1,17 @@
+<script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+<script>
+    const socket = io('http://localhost:4000');
+    const roomId = "room123"; // puede ser la ID de la chamba
+
+    socket.emit('joinRoom', roomId);
+
+    // Enviar mensaje
+    function sendMessage(msg, sender) {
+        socket.emit('chatMessage', { roomId, sender, message: msg });
+    }
+
+    // Recibir mensajes
+    socket.on('chatMessage', (data) => {
+        console.log(`[${data.sender}] dice: ${data.message}`);
+    });
+</script>
